@@ -23,15 +23,16 @@ var fetchProfileAndWriteToFile = function(readFilePath, writeFilePath) {
 
     pc.pluckFirstLineFromFileAsync(readFilePath)
       .then((firstLine) => {
-        ps.getGitHubProfileAsync(firstLine);
+        // firstLine is available
+        return ps.getGitHubProfileAsync(firstLine);
         // console.log('firstLine: ', firstLine);
       })
       .then((data) => {
-      // TODO get data from function to read. Its showing in the imported function but it doesn't land here as data
-        console.log('data: ', data);
+        resolve(pc.writeToFileAsync(writeFilePath, data));
+        // console.log('data returned to the promise: ', data);
       })
       .catch((err) => {
-        console.log('error from getGithubProfileAsync: ', err);
+        reject(console.log('error from getGithubProfileAsync: ', err));
       });
   });
 };

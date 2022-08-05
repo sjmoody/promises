@@ -23,6 +23,18 @@ var pluckFirstLineFromFileAsync = function(filePath) {
   });
 };
 
+var writeToFileAsync = function(filePath, data) {
+  return new Promise(function(resolve, reject) {
+    fs.writeFile(filePath, JSON.stringify(data), (err) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve();
+      }
+    });
+  });
+};
+
 
 
 // This function should retrieve the status code of a GET request to `url`
@@ -52,5 +64,6 @@ var getStatusCodeAsync = function(url) {
 // Export these functions so we can test them and reuse them in later exercises
 module.exports = {
   getStatusCodeAsync: getStatusCodeAsync,
-  pluckFirstLineFromFileAsync: pluckFirstLineFromFileAsync
+  pluckFirstLineFromFileAsync: pluckFirstLineFromFileAsync,
+  writeToFileAsync: writeToFileAsync
 };

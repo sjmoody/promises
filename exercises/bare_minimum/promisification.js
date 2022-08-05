@@ -35,7 +35,7 @@ var getGitHubProfileAsync = (user) => {
       if (err) {
         reject(err);
       } else {
-        console.log("data is ", data);
+        // console.log("data within the sub function is ", data); //successfully resolved
         resolve(data);
       }
     });
